@@ -1,10 +1,12 @@
+const fireBase = require('../firebase');
+
+const db = fireBase.database();
+
 module.exports = {
 
   getNews: (req, res) => {
-    console.log('get news');
+    const ref = db.ref("news");
 
-    setTimeout(() => {
-      res.status(200).send('todo: return data from firebase');
-    }, 600)
+    ref.once("value", snapshot => res.status(200).send(snapshot.val()));
   }
 };

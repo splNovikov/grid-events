@@ -1,5 +1,5 @@
 // 1. initialize Firebase
-require('./firebase/initialisation');
+require('./firebase/index');
 
 // 2. Start Express server
-require('./server/initialisation');
+require('./server/initialization');

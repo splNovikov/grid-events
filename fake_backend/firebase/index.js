@@ -8,8 +8,4 @@ admin.initializeApp({
   databaseURL: "https://grid-events-4c67f.firebaseio.com"
 });
 
-const db = admin.database();
-const ref = db.ref("news");
-
-// todo: remove it. just for demo functionality
-ref.once("value", snapshot => console.log(snapshot.val()));
+module.exports = admin;
