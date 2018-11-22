@@ -1,13 +1,3 @@
 <section class="news-container">
   <router-outlet></router-outlet>
-  <!--// todo: just to demonstrate:-->
-  <div *ngFor='let newsItem of news'>
-    <div>content: {{newsItem.content}}</div>
-    <div>id: {{newsItem.id}}</div>
-    <div>dateCreated: {{newsItem.dateCreated | date}}</div>
-    <div>images:
-      <img style='max-height: 20em;' *ngFor='let image of newsItem.images' [src]='image'>
-    </div>
-    <div>authorId: {{newsItem.authorId}}</div>
-  </div>
 </section>
