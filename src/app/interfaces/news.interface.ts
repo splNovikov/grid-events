@@ -4,4 +4,5 @@ export interface INews {
   dateCreated:  number;
   id:           number;
   images:       string[];
+  title:        string;
 }
