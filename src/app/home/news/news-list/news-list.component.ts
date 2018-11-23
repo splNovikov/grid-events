@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { INews } from '../../../interfaces/news.interface';
+import { NewsService } from '../../../services';
+
 @Component({
   selector: 'ge-news-list',
   templateUrl: './news-list.component.html',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsListComponent implements OnInit {
 
-  constructor() { }
+  public news: INews[] = [];
+
+  constructor(private _newsService: NewsService) {
+  }
 
   ngOnInit() {
+    // todo: unsubscribe
+    this._newsService.getNews()
+      .subscribe(this.handleNewsSubscription);
+  }
+
+  private handleNewsSubscription = (news: INews[]) => {
+    this.news = [].concat(news);
   }
 
 }

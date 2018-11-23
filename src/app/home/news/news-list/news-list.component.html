@@ -1,3 +1,32 @@
-<p>
-  news-list works!
-</p>
+<mat-grid-list cols="2" rowHeight="450px">
+
+  <!--// todo: return back if need:-->
+  <!--[colspan]="newsItem.cols" [rowspan]="newsItem.rows"-->
+  <mat-grid-tile *ngFor="let newsItem of news">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          <!--// todo: add title prop-->
+          {{newsItem.title}}
+          <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item>Expand</button>
+            <button mat-menu-item>Remove</button>
+          </mat-menu>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <div>content: {{newsItem.content}}</div>
+        <div>id: {{newsItem.id}}</div>
+        <div>dateCreated: {{newsItem.dateCreated | date}}</div>
+        <div>images:
+          <img style='max-height: 20em;' *ngFor='let image of newsItem.images' [src]='image'>
+        </div>
+        <div>authorId: {{newsItem.authorId}}</div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
