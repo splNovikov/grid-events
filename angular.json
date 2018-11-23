@@ -67,6 +67,7 @@
             },
             "hmr": {
               "hmr": true,
+              "hmrWarning": false,
               "browserTarget": "grid-events:build:hmr"
             }
           }
