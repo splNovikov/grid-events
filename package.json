@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --progress false --port 7000",
-    "start:hmr": "ng serve --hmr -o --progress false --port 7000",
+    "start:hmr": "ng serve --configuration hmr -o --progress false --port 7000",
     "start:fake_backend": "nodemon ./fake_backend",
     "build": "ng build",
     "test": "ng test",
