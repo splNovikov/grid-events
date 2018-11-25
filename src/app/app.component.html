@@ -1,2 +1,21 @@
-<ge-header></ge-header>
-<router-outlet></router-outlet>
+<ng-container>
+  <mat-toolbar class='header' color='primary'>
+    <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <!--Todo: move app-name to constants:-->
+    <span>Grid-Events</span>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="container">
+    <mat-sidenav #sidenav mode="side" opened class="nav" [fixedInViewport]="false">
+      <mat-nav-list>
+        <!--todo: move routes to constants-->
+        <a mat-list-item routerLink="feed">News</a>
+        <a mat-list-item routerLink="events">Events</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>

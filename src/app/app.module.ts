@@ -10,14 +10,12 @@ import { appRoutes } from './app.routers';
 import { NewsModule } from './home/news/news.module';
 import { EventsModule } from './home/events/events.module';
 import { EventsService, NewsService } from './services';
-import { HeaderComponent } from './home/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    HeaderComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

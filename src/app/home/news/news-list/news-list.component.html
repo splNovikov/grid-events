@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" rowHeight="450px">
+<mat-grid-list cols="1" rowHeight="30rem">
 
   <!--// todo: return back if need:-->
   <!--[colspan]="newsItem.cols" [rowspan]="newsItem.rows"-->
@@ -20,7 +20,7 @@
         <div>content: {{newsItem.content}}</div>
         <div>id: {{newsItem.id}}</div>
         <div>dateCreated: {{newsItem.dateCreated | date}}</div>
-        <div>images:
+        <div>
           <img style='max-height: 20em;' *ngFor='let image of newsItem.images' [src]='image'>
         </div>
         <div>authorId: {{newsItem.authorId}}</div>
