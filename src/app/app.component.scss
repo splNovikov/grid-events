@@ -1,0 +1,20 @@
+$header-height: 3rem;
+
+.header {
+  height: $header-height;
+}
+
+.container {
+  height: calc(100vh - #{$header-height});
+  display: flex;
+  flex-direction: column;
+
+  .nav {
+    min-width: 10rem;
+  }
+
+  .content {
+    flex: 1;
+    overflow: auto;
+  }
+}
