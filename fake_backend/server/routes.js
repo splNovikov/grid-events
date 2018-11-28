@@ -4,7 +4,10 @@ let controller = require('./controller.js');
 
 // API ROUTES //
 
-// Retrieve profiles
+// Retrieve news
 router.get('/news', controller.getNews);
+
+// Get info about current user
+router.get('/me', controller.getUserInfo);
 
 module.exports = router;

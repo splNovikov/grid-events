@@ -6,4 +6,5 @@ const apiUrl = `${environment.baseUrl}${apiPrefix}`;
 
 export const apiRoutes = {
   news: `${apiUrl}/news`,
+  me: `${apiUrl}/me`
 };

@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/index';
 
+import { IUser } from '../interfaces';
 import { apiRoutes } from '../constants/api-routes';
-import { INews } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NewsService {
+export class UserService {
 
   constructor(private _http: HttpClient) {
   }
 
-  public getNews(): Observable<INews[]> {
+  public getInfo(): Observable<IUser> {
     return this._http
-      .get<INews[]>(apiRoutes.news);
+      .get<IUser>(apiRoutes.me);
   }
 }

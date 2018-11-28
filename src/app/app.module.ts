@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { appRoutes } from './app.routers';
 import { NewsModule } from './home/news/news.module';
 import { EventsModule } from './home/events/events.module';
-import { EventsService, NewsService } from './services';
+import { EventsService, NewsService, UserService } from './services';
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import { EventsService, NewsService } from './services';
     NewsModule,
     EventsModule
   ],
-  providers: [NewsService, EventsService],
+  providers: [NewsService, EventsService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
