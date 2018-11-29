@@ -11,10 +11,14 @@ module.exports = {
   },
 
   getUserInfo: (req, res) => {
-    // todo: get data from firebase
-    // const ref = db.ref("news");
+    const { id } = req.query;
+    const ref = db.ref("users");
 
-    // ref.once("value", snapshot => res.status(200).send(snapshot.val()));
-    return res.status(200).send({id: 'pnovikov'});
+    // todo: may be we can use stored procedures on firebase?
+    ref.once("value", snapshot => {
+      const users = snapshot.val();
+
+      return res.status(200).send(users.find(user => user.id === id));
+    });
   }
 };

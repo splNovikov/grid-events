@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/index';
 
 import { IUser } from '../interfaces';
@@ -13,8 +13,13 @@ export class UserService {
   constructor(private _http: HttpClient) {
   }
 
-  public getInfo(): Observable<IUser> {
+  public getInfo(id: string): Observable<IUser> {
+    const requestOptions = {
+      params: new HttpParams()
+        .set('id', id)
+    };
+
     return this._http
-      .get<IUser>(apiRoutes.me);
+      .get<IUser>(apiRoutes.me, requestOptions);
   }
 }

@@ -14,12 +14,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription;
 
+  public user: IUser;
+
   // get info about me:
   constructor(private _userService: UserService) {
   }
 
   ngOnInit() {
-    this.userSubscription = this._userService.getInfo()
+    this.userSubscription = this._userService.getInfo('pnovikov')
       .subscribe(this.handleUserSubscription);
   }
 
@@ -28,5 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private handleUserSubscription = (user: IUser) => {
-  }
+    if (!user) {
+      return;
+    }
+
+    this.user = user;
+  };
 }

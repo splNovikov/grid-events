@@ -2,6 +2,22 @@ $header-height: 3rem;
 
 .header {
   height: $header-height;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .user-image {
+    max-height: 1.6rem;
+    border-radius: 100%;
+    // todo: move to variables:
+    margin-left: 1rem;
+  }
+
+  .user-info {
+    // todo: move to variables:
+    font-size: 1rem;
+  }
 }
 
 .container {
