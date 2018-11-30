@@ -13,13 +13,8 @@ export class UserService {
   constructor(private _http: HttpClient) {
   }
 
-  public getInfo(id: string): Observable<IUser> {
-    const requestOptions = {
-      params: new HttpParams()
-        .set('id', id)
-    };
-
+  public getInfo(): Observable<IUser> {
     return this._http
-      .get<IUser>(apiRoutes.me, requestOptions);
+      .get<IUser>(apiRoutes.me);
   }
 }

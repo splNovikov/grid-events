@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSubscription = this._userService.getInfo('pnovikov')
+    this.userSubscription = this._userService.getInfo()
       .subscribe(this.handleUserSubscription);
   }
 
