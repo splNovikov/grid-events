@@ -6,8 +6,9 @@
     <!--Todo: move app-name to constants:-->
     <span>Grid-Events</span>
     <span class='spacer'></span>
-    <span class='user-info'>{{user?.firstName}} {{user?.lastName}}</span>
-    <img class='user-image' [src]='user.image' />
+    <span class='user-info'
+          [matTooltip]='user?.role.name'>{{user?.firstName}} {{user?.lastName}}</span>
+    <img class='user-image' [src]='user?.image' />
   </mat-toolbar>
 
   <mat-sidenav-container class="container">
