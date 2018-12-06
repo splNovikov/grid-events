@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/index';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs/index';
 
 import { IUser } from '../interfaces';
 import { apiRoutes } from '../constants/api-routes';
@@ -10,11 +10,20 @@ import { apiRoutes } from '../constants/api-routes';
 })
 export class UserService {
 
+  private _user: BehaviorSubject<IUser> = new BehaviorSubject(<IUser>{role: {}});
+
   constructor(private _http: HttpClient) {
   }
 
-  public getInfo(): Observable<IUser> {
+  public get user(): Observable<IUser> {
+    return this._user.asObservable();
+  }
+
+  public loadUser(): Subscription {
     return this._http
-      .get<IUser>(apiRoutes.me);
+      .get<IUser>(apiRoutes.me)
+      .subscribe((user: IUser) => {
+        this._user.next(Object.assign({}, user));
+      });
   }
 }
