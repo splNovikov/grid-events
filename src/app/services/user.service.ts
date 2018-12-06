@@ -10,7 +10,7 @@ import { apiRoutes } from '../constants/api-routes';
 })
 export class UserService {
 
-  private _user: BehaviorSubject<IUser> = new BehaviorSubject(<IUser>{role: {}});
+  private _user: BehaviorSubject<IUser> = new BehaviorSubject(null);
 
   constructor(private _http: HttpClient) {
   }
