@@ -16,13 +16,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public user: IUser;
 
-  // get info about me:
   constructor(private _userService: UserService) {
   }
 
   ngOnInit() {
-    this.userSubscription = this._userService.getInfo()
+    this.userSubscription = this._userService.user
       .subscribe(this.handleUserSubscription);
+
+    this._userService.loadUser();
   }
 
   ngOnDestroy() {
