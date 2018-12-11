@@ -1,8 +1,10 @@
 <section class="news-container">
   <router-outlet></router-outlet>
   <button mat-fab
+          *ngIf="(user$ | async)?.role.canCreateNews"
           color="primary"
-          class="add-button">
+          class="add-button"
+          (click)="handleClickAddNews()">
     <mat-icon aria-label="Add news">add</mat-icon>
   </button>
 </section>

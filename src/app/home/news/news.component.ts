@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/index';
+
+import { UserService } from '../../services';
+import { IUser } from '../../interfaces';
 
 
 @Component({
@@ -8,10 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() {
+  public user$: Observable<IUser>;
+
+  constructor(private _userService: UserService) {
   }
 
   ngOnInit() {
+    this.user$ = this._userService.user;
+  }
+
+  public handleClickAddNews = (): void => {
+    alert('ADD news');
   }
 
 }

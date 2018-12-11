@@ -7,8 +7,8 @@
     <span>Grid-Events</span>
     <span class='spacer'></span>
     <span class='user-info'
-          [matTooltip]='user?.role.name'>{{user?.firstName}} {{user?.lastName}}</span>
-    <img class='user-image' [src]='user?.image || ""' />
+          [matTooltip]='(user$ | async)?.role.name'>{{(user$ | async)?.firstName}} {{(user$ | async)?.lastName}}</span>
+    <img class='user-image' [src]='(user$ | async)?.image || ""' />
   </mat-toolbar>
 
   <mat-sidenav-container class="container">
