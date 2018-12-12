@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs/index';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { IUser } from '../interfaces';
 import { apiRoutes } from '../constants/api-routes';

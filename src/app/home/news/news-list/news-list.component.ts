@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { INews } from '../../../interfaces/news.interface';
+import { INews } from '../../../interfaces';
 import { NewsService } from '../../../services';
 
 @Component({
@@ -10,19 +11,12 @@ import { NewsService } from '../../../services';
 })
 export class NewsListComponent implements OnInit {
 
-  public news: INews[] = [];
+  public news$: Observable<INews[]>;
 
   constructor(private _newsService: NewsService) {
   }
 
   ngOnInit() {
-    // todo: unsubscribe
-    this._newsService.getNews()
-      .subscribe(this.handleNewsSubscription);
+    this.news$ = this._newsService.news;
   }
-
-  private handleNewsSubscription = (news: INews[]) => {
-    this.news = [].concat(news);
-  }
-
 }

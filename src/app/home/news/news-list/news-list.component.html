@@ -2,7 +2,7 @@
 
   <!--// todo: return back if need:-->
   <!--[colspan]="newsItem.cols" [rowspan]="newsItem.rows"-->
-  <mat-grid-tile *ngFor="let newsItem of news">
+  <mat-grid-tile *ngFor="let newsItem of news$ | async">
     <mat-card class="dashboard-card">
       <mat-card-header>
         <mat-card-title>

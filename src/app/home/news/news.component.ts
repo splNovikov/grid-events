@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/index';
 
-import { UserService } from '../../services';
+import { NewsService, UserService } from '../../services';
 import { IUser } from '../../interfaces';
 
 
@@ -14,10 +14,12 @@ export class NewsComponent implements OnInit {
 
   public user$: Observable<IUser>;
 
-  constructor(private _userService: UserService) {
+  constructor(private _userService: UserService,
+              private _newsService: NewsService) {
   }
 
   ngOnInit() {
+    this._newsService.loadNews();
     this.user$ = this._userService.user;
   }
 
