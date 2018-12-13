@@ -29,3 +29,12 @@
   </mat-grid-tile>
 
 </mat-grid-list>
+
+<button mat-fab
+        *ngIf="(user$ | async)?.role.canCreateNews"
+        color="primary"
+        class="add-button"
+        (click)="handleClickAddNews()">
+  <mat-icon aria-label="Add news">add</mat-icon>
+</button>
+

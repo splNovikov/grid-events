@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { NewsService, UserService } from '../../services';
-import { IUser } from '../../interfaces';
-
+import { INews, IUser } from '../../../interfaces';
+import { NewsService, UserService } from '../../../services';
 
 @Component({
-  selector: 'ge-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  selector: 'ge-feed',
+  templateUrl: './feed.component.html',
+  styleUrls: ['./feed.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class FeedComponent implements OnInit {
 
   public user$: Observable<IUser>;
+  public news$: Observable<INews[]>;
 
   constructor(private _userService: UserService,
               private _newsService: NewsService,
@@ -22,14 +22,12 @@ export class NewsComponent implements OnInit {
 
   ngOnInit() {
     this._newsService.loadNews();
+    this.news$ = this._newsService.news;
     this.user$ = this._userService.user;
   }
 
   public handleClickAddNews = (): void => {
     // todo: use constants
-    this._router.navigate(['/feed', 'add']);
+    this._router.navigate(['/news', 1, 'edit']);
   }
-
 }
-
-
