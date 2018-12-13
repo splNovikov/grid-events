@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/index';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { NewsService, UserService } from '../../services';
 import { IUser } from '../../interfaces';
@@ -15,7 +16,8 @@ export class NewsComponent implements OnInit {
   public user$: Observable<IUser>;
 
   constructor(private _userService: UserService,
-              private _newsService: NewsService) {
+              private _newsService: NewsService,
+              private _router: Router) {
   }
 
   ngOnInit() {
@@ -24,7 +26,8 @@ export class NewsComponent implements OnInit {
   }
 
   public handleClickAddNews = (): void => {
-    alert('ADD news');
+    // todo: use constants
+    this._router.navigate(['/feed', 'add']);
   }
 
 }
