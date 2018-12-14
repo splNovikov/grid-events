@@ -4,6 +4,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { FeedComponent } from './feed/feed.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { NewsEditComponent } from './news-edit/news-edit.component';
+import { NewsCreateComponent } from './news-create/news-create.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { NewsEditComponent } from './news-edit/news-edit.component';
   declarations: [
     FeedComponent,
     NewsDetailsComponent,
-    NewsEditComponent
+    NewsEditComponent,
+    NewsCreateComponent
   ]
 })
 export class NewsModule {

@@ -11,6 +11,9 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
+            <!--// todo: move somehow to constants-->
+            <button mat-menu-item [routerLink]="['/news', newsItem.id, 'edit']">Edit</button>
+            <button mat-menu-item [routerLink]="['/news', newsItem.id]">Details</button>
             <button mat-menu-item>Expand</button>
             <button mat-menu-item>Remove</button>
           </mat-menu>
@@ -30,11 +33,12 @@
 
 </mat-grid-list>
 
+<!--// todo: move somehow routes to constants-->
 <button mat-fab
         *ngIf="(user$ | async)?.role.canCreateNews"
         color="primary"
         class="add-button"
-        (click)="handleClickAddNews()">
+        [routerLink]="['/create', 'news']">
   <mat-icon aria-label="Add news">add</mat-icon>
 </button>
 

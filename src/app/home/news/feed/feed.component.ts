@@ -25,9 +25,4 @@ export class FeedComponent implements OnInit {
     this.news$ = this._newsService.news;
     this.user$ = this._userService.user;
   }
-
-  public handleClickAddNews = (): void => {
-    // todo: use constants
-    this._router.navigate(['/news', 1, 'edit']);
-  }
 }

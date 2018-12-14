@@ -8,7 +8,7 @@ import { IUser } from '../../interfaces';
 
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class CanCreateNewsGuard implements CanActivate {
 
   constructor(private _userService: UserService,
               private _router: Router) {
