@@ -12,7 +12,9 @@
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
             <!--// todo: move somehow to constants-->
-            <button mat-menu-item [routerLink]="['/news', newsItem.id, 'edit']">Edit</button>
+            <button mat-menu-item
+                    [routerLink]="['/news', newsItem.id, 'edit']"
+                    *ngIf="(user$ | async)?.role.canUpdateNews">Edit</button>
             <button mat-menu-item [routerLink]="['/news', newsItem.id]">Details</button>
             <button mat-menu-item>Expand</button>
             <button mat-menu-item>Remove</button>
