@@ -5,6 +5,7 @@ import { FeedComponent } from './feed/feed.component';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { NewsEditComponent } from './news-edit/news-edit.component';
 import { NewsCreateComponent } from './news-create/news-create.component';
+import { NewsFormComponent } from './news-form/news-form.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { NewsCreateComponent } from './news-create/news-create.component';
     FeedComponent,
     NewsDetailsComponent,
     NewsEditComponent,
-    NewsCreateComponent
+    NewsCreateComponent,
+    NewsFormComponent
   ]
 })
 export class NewsModule {
