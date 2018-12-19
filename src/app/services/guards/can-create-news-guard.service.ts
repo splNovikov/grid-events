@@ -18,7 +18,6 @@ export class CanCreateNewsGuard implements CanActivate {
     return this._userService.user.pipe(
       map((user: IUser) => user.role.canCreateNews),
       catchError(() => {
-        // todo: use constants"
         this._router.navigate(['/feed']);
 
         return of(false);

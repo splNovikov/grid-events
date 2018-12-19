@@ -8,7 +8,6 @@ import { NewsCreateComponent } from './news-create/news-create.component';
 
 export const newsRoutes: Routes = [
   {
-    // todo: move feed to constants
     path: 'feed', component: FeedComponent
   },
   {
