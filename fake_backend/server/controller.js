@@ -24,6 +24,12 @@ module.exports = {
     return res.status(200).send(newsSnapshot.val());
   },
 
+  createNews: async (req, res) => {
+    // const newsSnapshot = await getNewsSnapshot();
+
+    return res.status(200).send({});
+  },
+
   getUserInfo: async (req, res) => {
     const usersSnapshot = await getUsersSnapshot(USER_ID);
     const user = usersSnapshot.val().find(u => u);

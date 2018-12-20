@@ -19,11 +19,18 @@ export class NewsService {
     return this._news.asObservable();
   }
 
+  // todo: I dont like subscription on each time of using this fucntion
   public loadNews(): Subscription {
     return this._http
       .get<INews[]>(apiRoutes.news)
       .subscribe((news: INews[]) => {
         this._news.next([].concat(news));
       });
+  }
+
+  // todo: that is not working now
+  public createNews(newsItem: INews): Observable<INews> {
+    return this._http
+      .post<INews>(apiRoutes.news, newsItem);
   }
 }

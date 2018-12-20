@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { INews, IUser } from '../../../interfaces';
@@ -16,8 +15,7 @@ export class FeedComponent implements OnInit {
   public news$: Observable<INews[]>;
 
   constructor(private _userService: UserService,
-              private _newsService: NewsService,
-              private _router: Router) {
+              private _newsService: NewsService) {
   }
 
   ngOnInit() {
