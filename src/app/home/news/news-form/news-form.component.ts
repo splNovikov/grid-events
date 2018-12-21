@@ -47,6 +47,7 @@ export class NewsFormComponent implements OnDestroy {
   private composeNewsItem = (formValue): INews => ({
     ...formValue,
     authorId: this.user.id,
+    // todo: move to BE
     dateCreated: new Date().getTime(),
     // todo: images should be an array
     images: [formValue.images]
