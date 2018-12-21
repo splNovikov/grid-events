@@ -18,7 +18,6 @@ export class NewsService {
       .get<INews[]>(apiRoutes.news);
   }
 
-  // todo: that is not working now
   public createNews(newsItem: INews): Observable<INews> {
     return this._http
       .post<INews>(apiRoutes.news, newsItem);

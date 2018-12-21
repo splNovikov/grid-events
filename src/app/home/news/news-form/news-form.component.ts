@@ -37,7 +37,7 @@ export class NewsFormComponent implements OnDestroy {
   public onSubmit = (): void => {
     this._newsService
       .createNews(this.composeNewsItem(this.newsForm.value))
-      .pipe(tap(() => this._router.navigate(['/feed'])));
+      .subscribe(this.handleCreateNewsSubscription);
   }
 
   private setUser = (user: IUser): void => {
@@ -51,4 +51,8 @@ export class NewsFormComponent implements OnDestroy {
     // todo: images should be an array
     images: [formValue.images]
   })
+
+  private handleCreateNewsSubscription = (): void => {
+    this._router.navigate(['/feed']);
+  }
 }
