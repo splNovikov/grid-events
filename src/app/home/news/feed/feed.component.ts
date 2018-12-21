@@ -19,8 +19,7 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._newsService.loadNews();
-    this.news$ = this._newsService.news;
+    this.news$ = this._newsService.loadNews();
     this.user$ = this._userService.user;
   }
 }

@@ -19,6 +19,7 @@ export class UserService {
     return this._user.asObservable();
   }
 
+  // todo: remove Subscription
   public loadUser(): Subscription {
     return this._http
       .get<IUser>(apiRoutes.me)
