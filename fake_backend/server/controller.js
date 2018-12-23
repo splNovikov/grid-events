@@ -1,4 +1,5 @@
 const fireBase = require('../firebase');
+const utils = require('../utils');
 
 const db = fireBase.database();
 const newsRef = db.ref('news');
@@ -21,7 +22,22 @@ module.exports = {
   getNews: async (req, res) => {
     const newsSnapshot = await getNewsSnapshot();
 
-    return res.status(200).send(newsSnapshot.val());
+    return res.status(200).send(Object.values(newsSnapshot.val()));
+  },
+
+  createNews: async (req, res) => {
+    const date = new Date().getTime();
+    const newsItem = {
+      ...req.body,
+      id: utils.guid(),
+      authorId: USER_ID,
+      dateCreated: date,
+      dateUpdated: date
+    };
+
+    await newsRef.push(newsItem);
+
+    return res.status(200).send(newsItem);
   },
 
   getUserInfo: async (req, res) => {

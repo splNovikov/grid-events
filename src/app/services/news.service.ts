@@ -17,4 +17,9 @@ export class NewsService {
     return this._http
       .get<INews[]>(apiRoutes.news);
   }
+
+  public createNews(newsItem: INews): Observable<INews> {
+    return this._http
+      .post<INews>(apiRoutes.news, newsItem);
+  }
 }

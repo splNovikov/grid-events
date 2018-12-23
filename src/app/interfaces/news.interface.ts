@@ -2,7 +2,8 @@ export interface INews {
   authorId:     string;
   content:      string;
   dateCreated:  number;
-  id:           number;
+  dateUpdated:  number;
+  id:           string;
   images:       string[];
   title:        string;
 }

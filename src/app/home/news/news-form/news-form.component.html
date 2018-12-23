@@ -1,0 +1,36 @@
+<form [formGroup]="newsForm" (ngSubmit)="onSubmit()" class='news-form'>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Type title here..." formControlName="title">
+      <mat-error *ngIf="newsForm.controls['title'].invalid">Title is required</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Content</mat-label>
+      <textarea matInput placeholder="Type content here..." formControlName="content"></textarea>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Images</mat-label>
+      <input matInput placeholder="Paste image link here..." formControlName="images">
+    </mat-form-field>
+  </p>
+
+  <button
+    color="primary"
+    mat-raised-button
+    type="submit"
+    [disabled]="!newsForm.valid">Submit
+  </button>
+
+  <p>
+    Form Status: {{ newsForm.status }}
+  </p>
+
+</form>
