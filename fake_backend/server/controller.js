@@ -1,5 +1,5 @@
-const _ = require('lodash');
 const fireBase = require('../firebase');
+const utils = require('../utils');
 
 const db = fireBase.database();
 const newsRef = db.ref('news');
@@ -29,7 +29,7 @@ module.exports = {
     const date = new Date().getTime();
     const newsItem = {
       ...req.body,
-      id: _.uniqueId(),
+      id: utils.guid(),
       authorId: USER_ID,
       dateCreated: date,
       dateUpdated: date
