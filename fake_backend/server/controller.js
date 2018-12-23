@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const fireBase = require('../firebase');
 
 const db = fireBase.database();
@@ -21,13 +22,22 @@ module.exports = {
   getNews: async (req, res) => {
     const newsSnapshot = await getNewsSnapshot();
 
-    return res.status(200).send(newsSnapshot.val());
+    return res.status(200).send(Object.values(newsSnapshot.val()));
   },
 
   createNews: async (req, res) => {
-    // const newsSnapshot = await getNewsSnapshot();
+    const date = new Date().getTime();
+    const newsItem = {
+      ...req.body,
+      id: _.uniqueId(),
+      authorId: USER_ID,
+      dateCreated: date,
+      dateUpdated: date
+    };
 
-    return res.status(200).send({});
+    await newsRef.push(newsItem);
+
+    return res.status(200).send(newsItem);
   },
 
   getUserInfo: async (req, res) => {

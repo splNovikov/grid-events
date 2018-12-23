@@ -12,26 +12,16 @@ import { NewsService, UserService } from '../../../services';
   templateUrl: './news-form.component.html',
   styleUrls: ['./news-form.component.scss']
 })
-export class NewsFormComponent implements OnDestroy {
+export class NewsFormComponent {
   public newsForm = this._fb.group({
     title: ['', Validators.required],
     content: [''],
     images: ['']
   });
 
-  private user: IUser;
-
-  private userSubscription: Subscription;
-
   constructor(private _fb: FormBuilder,
               private _router: Router,
-              private _userService: UserService,
               private _newsService: NewsService) {
-    this.userSubscription = _userService.user.subscribe(this.setUser);
-  }
-
-  ngOnDestroy() {
-    this.userSubscription.unsubscribe();
   }
 
   public onSubmit = (): void => {
@@ -40,15 +30,8 @@ export class NewsFormComponent implements OnDestroy {
       .subscribe(this.handleCreateNewsSubscription);
   }
 
-  private setUser = (user: IUser): void => {
-    this.user = user;
-  }
-
   private composeNewsItem = (formValue): INews => ({
     ...formValue,
-    authorId: this.user.id,
-    // todo: move to BE
-    dateCreated: new Date().getTime(),
     // todo: images should be an array
     images: [formValue.images]
   })

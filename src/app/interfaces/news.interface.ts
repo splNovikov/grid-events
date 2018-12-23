@@ -2,7 +2,7 @@ export interface INews {
   authorId:     string;
   content:      string;
   dateCreated:  number;
-  // todo: add dateUpdated
+  dateUpdated:  number;
   id:           number;
   images:       string[];
   title:        string;
