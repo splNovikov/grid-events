@@ -10,7 +10,7 @@ import { apiRoutes } from '../constants/api-routes';
 })
 export class UserService {
 
-  private _user: BehaviorSubject<IUser> = new BehaviorSubject(null);
+  private _user: BehaviorSubject<IUser> = new BehaviorSubject(this.getUserFromStorage());
 
   constructor(private _http: HttpClient) {
   }
@@ -19,12 +19,22 @@ export class UserService {
     return this._user.asObservable();
   }
 
-  // todo: remove Subscription
   public loadUser(): Subscription {
     return this._http
       .get<IUser>(apiRoutes.me)
-      .subscribe((user: IUser) => {
-        this._user.next(Object.assign({}, user));
-      });
+      .subscribe(this.handleLoadUserSubscription);
+  }
+
+  private handleLoadUserSubscription = (user: IUser): void => {
+    this.setUserToStorage(user);
+    this._user.next(Object.assign({}, user));
+  }
+
+  private setUserToStorage = (user: IUser) => {
+    window.localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  private getUserFromStorage(): IUser {
+    return JSON.parse(window.localStorage.getItem('user'));
   }
 }
