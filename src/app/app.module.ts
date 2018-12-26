@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { appRoutes } from './app.routes';
 import { NewsModule } from './home/news/news.module';
 import { EventsModule } from './home/events/events.module';
+import { ModalsModule } from './home/modals/modals.module';
 import { EventsService, NewsService, UserService, CanCreateNewsGuard, CanUpdateNewsGuard } from './services';
 
 
@@ -22,6 +23,7 @@ import { EventsService, NewsService, UserService, CanCreateNewsGuard, CanUpdateN
     RouterModule.forRoot(appRoutes),
     // Custom
     SharedModule.forRoot(),
+    ModalsModule,
     // Pages:
     NewsModule,
     EventsModule
@@ -29,4 +31,5 @@ import { EventsService, NewsService, UserService, CanCreateNewsGuard, CanUpdateN
   providers: [NewsService, EventsService, UserService, CanCreateNewsGuard, CanUpdateNewsGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
