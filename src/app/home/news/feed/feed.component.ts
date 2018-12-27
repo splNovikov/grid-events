@@ -22,7 +22,7 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.news$ = this._newsService.loadNews();
+    this.loadNews();
     this.user$ = this._userService.user;
   }
 
@@ -30,8 +30,20 @@ export class FeedComponent implements OnInit {
     this._dialog.open(ConfirmModalComponent, {
       data: {
         title: `Do you really want to delete ${newsItem.title}?`,
-        content: `You are going to delete ${newsItem.title}. Are you sure?`
+        content: `You are going to delete ${newsItem.title}. Are you sure?`,
+        onConfirm: () => {
+          this.removeNewsItem(newsItem)
+            .subscribe(this.loadNews);
+        }
       }
     });
+  }
+
+  private loadNews = (): void => {
+    this.news$ = this._newsService.loadNews();
+  }
+
+  private removeNewsItem = (newsItem: INews): Observable<boolean> => {
+    return this._newsService.deleteNews(newsItem);
   }
 }

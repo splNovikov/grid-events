@@ -8,13 +8,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ConfirmModalComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ConfirmModalComponent>,
+    private _dialogRef: MatDialogRef<ConfirmModalComponent>,
     // todo: confirm data type
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+  public onNoClick = (): void => {
+    this._dialogRef.close();
+  };
+
+  public onConfirm = (): void => {
+    this.data.onConfirm();
+    this._dialogRef.close();
+  };
 
 }
