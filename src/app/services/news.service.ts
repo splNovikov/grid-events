@@ -22,4 +22,9 @@ export class NewsService {
     return this._http
       .post<INews>(apiRoutes.news, newsItem);
   }
+
+  public deleteNews(newsItem: INews): Observable<boolean> {
+    return this._http
+      .delete<boolean>(`${apiRoutes.news}/${newsItem.id}`);
+  }
 }

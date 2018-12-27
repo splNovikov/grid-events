@@ -16,7 +16,9 @@
                     *ngIf="(user$ | async)?.role.canUpdateNews">Edit</button>
             <button mat-menu-item [routerLink]="['/news', newsItem.id]">Details</button>
             <button mat-menu-item>Expand</button>
-            <button mat-menu-item>Remove</button>
+            <button mat-menu-item
+                    *ngIf="(user$ | async)?.role.canDeleteNews"
+                    (click)='handleRemove(newsItem)'>Remove</button>
           </mat-menu>
         </mat-card-title>
       </mat-card-header>

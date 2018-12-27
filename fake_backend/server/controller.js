@@ -11,11 +11,8 @@ const USER_ID = 'pnovikov'; // admin
 const getNewsSnapshot = () =>
   newsRef.once('value', s => s);
 
-const getUsersSnapshot = userId =>
-  usersRef.orderByChild('id').equalTo(userId).once('value', s => s);
-
-const getRolesSnapshot = roleId =>
-  rolesRef.orderByChild('id').equalTo(roleId).once('value', s => s);
+const getSnapshotById = (ref, id) =>
+  ref.orderByChild('id').equalTo(id).once('value', s => s);
 
 module.exports = {
 
@@ -40,10 +37,18 @@ module.exports = {
     return res.status(200).send(newsItem);
   },
 
+  deleteNews: async (req, res) => {
+    const { params: { id } } = req;
+    const newsItemSnapshot = await getSnapshotById(newsRef, id);
+    await newsItemSnapshot.forEach(s => s.ref.remove());
+
+    return res.status(200).send(true);
+  },
+
   getUserInfo: async (req, res) => {
-    const usersSnapshot = await getUsersSnapshot(USER_ID);
+    const usersSnapshot = await getSnapshotById(usersRef, USER_ID);
     const user = usersSnapshot.val().find(u => u);
-    const rolesSnapshot = await getRolesSnapshot(user.roleId);
+    const rolesSnapshot = await getSnapshotById(rolesRef, user.roleId);
     const role = rolesSnapshot.val().find(r => r);
 
     return res.status(200).send({

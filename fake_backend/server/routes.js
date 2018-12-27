@@ -10,6 +10,9 @@ router.get('/news', controller.getNews);
 // Create news
 router.post('/news', controller.createNews);
 
+// Delete news
+router.delete('/news/:id', controller.deleteNews);
+
 // Get info about current user
 router.get('/me', controller.getUserInfo);
 
