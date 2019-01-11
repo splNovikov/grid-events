@@ -7,6 +7,9 @@ let controller = require('./controller.js');
 // Retrieve news
 router.get('/news', controller.getNews);
 
+// Retrieve newsItem
+router.get('/news/:id', controller.getNewsItem);
+
 // Create news
 router.post('/news', controller.createNews);
 

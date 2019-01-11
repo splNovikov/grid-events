@@ -18,6 +18,11 @@ export class NewsService {
       .get<INews[]>(apiRoutes.news);
   }
 
+  public loadNewsItem(id: string): Observable<INews> {
+    return this._http
+      .get<INews>(`${apiRoutes.news}/${id}`);
+  }
+
   public createNews(newsItem: INews): Observable<INews> {
     return this._http
       .post<INews>(apiRoutes.news, newsItem);

@@ -22,6 +22,13 @@ module.exports = {
     return res.status(200).send(Object.values(newsSnapshot.val()));
   },
 
+  getNewsItem: async (req, res) => {
+    const { params: { id } } = req;
+    const newsSnapshot = await getSnapshotById(newsRef, id);
+
+    return res.status(200).send(newsSnapshot.val());
+  },
+
   createNews: async (req, res) => {
     const date = new Date().getTime();
     const newsItem = {
@@ -47,8 +54,10 @@ module.exports = {
 
   getUserInfo: async (req, res) => {
     const usersSnapshot = await getSnapshotById(usersRef, USER_ID);
+    // hope we will remove .find(u => u) when create those entities using firebase functionality
     const user = usersSnapshot.val().find(u => u);
     const rolesSnapshot = await getSnapshotById(rolesRef, user.roleId);
+    // hope we will remove .find(r => r) when create those entities using firebase functionality
     const role = rolesSnapshot.val().find(r => r);
 
     return res.status(200).send({
