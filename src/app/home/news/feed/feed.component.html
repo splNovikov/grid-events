@@ -26,6 +26,7 @@
         <div>content: {{newsItem.content}}</div>
         <div>id: {{newsItem.id}}</div>
         <div>dateCreated: {{newsItem.dateCreated | date}}</div>
+        <div>dateUpdated: {{newsItem.dateUpdated | date}}</div>
         <div>
           <img style='max-height: 20em;' *ngFor='let image of newsItem.images' [src]='image'>
         </div>

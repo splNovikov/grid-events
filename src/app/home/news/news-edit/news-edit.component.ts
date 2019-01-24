@@ -33,7 +33,10 @@ export class NewsEditComponent implements OnInit, OnDestroy {
 
   public handleEditNewsSubmit = (newsItem: INews) => {
     this._newsService
-      .editNews(newsItem)
+      .editNews({
+        ...this.newsItem,
+        ...newsItem
+      })
       .subscribe(this.handleEditNewsSubscription);
   }
 
