@@ -1,4 +1,3 @@
-{{newsItem | json}}
-
-<ge-news-form></ge-news-form>
+<ge-news-form [newsItem]='newsItem'
+              (onFormSubmit)='handleEditNewsSubmit($event)'></ge-news-form>
 

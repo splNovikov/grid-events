@@ -28,6 +28,11 @@ export class NewsService {
       .post<INews>(apiRoutes.news, newsItem);
   }
 
+  public editNews(newsItem: INews): Observable<INews> {
+    return this._http
+      .put<INews>(apiRoutes.news, newsItem);
+  }
+
   public deleteNews(newsItem: INews): Observable<boolean> {
     return this._http
       .delete<boolean>(`${apiRoutes.news}/${newsItem.id}`);

@@ -1,33 +1,51 @@
-import { Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/internal/operators';
-import { Subscription } from 'rxjs';
 
-import { INews, IUser } from '../../../interfaces';
-import { NewsService, UserService } from '../../../services';
+import { INews } from '../../../interfaces';
 
 @Component({
   selector: 'ge-news-form',
   templateUrl: './news-form.component.html',
-  styleUrls: ['./news-form.component.scss']
+  styleUrls: ['./news-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewsFormComponent {
+export class NewsFormComponent implements OnChanges {
+
+  @Input()
+  public newsItem: INews;
+
+  @Output()
+  onFormSubmit: EventEmitter<INews> = new EventEmitter<INews>();
+
   public newsForm = this._fb.group({
     title: ['', Validators.required],
     content: [''],
     images: ['']
   });
 
-  constructor(private _fb: FormBuilder,
-              private _router: Router,
-              private _newsService: NewsService) {
+  constructor(private _fb: FormBuilder) {
+  }
+
+  ngOnChanges({newsItem}: SimpleChanges) {
+    if (newsItem && newsItem.currentValue) {
+      this.newsForm.setValue({
+        title: newsItem.currentValue.title,
+        content: newsItem.currentValue.content,
+        images: newsItem.currentValue.images
+      });
+    }
   }
 
   public onSubmit = (): void => {
-    this._newsService
-      .createNews(this.composeNewsItem(this.newsForm.value))
-      .subscribe(this.handleCreateNewsSubscription);
+    this.onFormSubmit.emit(this.composeNewsItem(this.newsForm.value));
   }
 
   private composeNewsItem = (formValue): INews => ({
@@ -35,8 +53,4 @@ export class NewsFormComponent {
     // todo: images should be an array
     images: [formValue.images]
   })
-
-  private handleCreateNewsSubscription = (): void => {
-    this._router.navigate(['/feed']);
-  }
 }

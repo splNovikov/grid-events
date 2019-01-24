@@ -13,6 +13,9 @@ router.get('/news/:id', controller.getNewsItem);
 // Create news
 router.post('/news', controller.createNews);
 
+// Update news
+router.put('/news', controller.updateNews);
+
 // Delete news
 router.delete('/news/:id', controller.deleteNews);
 

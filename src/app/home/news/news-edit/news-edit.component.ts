@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { NewsService } from '../../../services';
 import { INews } from '../../../interfaces';
@@ -16,7 +16,8 @@ export class NewsEditComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(private _activatedRoute: ActivatedRoute,
-              private _newsService: NewsService) {
+              private _newsService: NewsService,
+              private _router: Router) {
   }
 
   ngOnInit() {
@@ -30,8 +31,18 @@ export class NewsEditComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  public handleEditNewsSubmit = (newsItem: INews) => {
+    this._newsService
+      .editNews(newsItem)
+      .subscribe(this.handleEditNewsSubscription);
+  }
+
   private setNewsItem = (newsItem: INews) => {
     this.newsItem = newsItem;
+  }
+
+  private handleEditNewsSubscription = (): void => {
+    this._router.navigate(['/feed']);
   }
 
 }

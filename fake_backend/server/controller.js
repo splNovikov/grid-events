@@ -26,7 +26,11 @@ module.exports = {
     const { params: { id } } = req;
     const newsSnapshot = await getSnapshotById(newsRef, id);
 
-    return res.status(200).send(newsSnapshot.val());
+    const val = newsSnapshot.val();
+    // since we receive object like this: { -asd8csd0sdd: { } } we need to get property name by Object.keys:
+    const item = val[Object.keys(val)[0]];
+
+    return res.status(200).send(item);
   },
 
   createNews: async (req, res) => {
@@ -42,6 +46,23 @@ module.exports = {
     await newsRef.push(newsItem);
 
     return res.status(200).send(newsItem);
+  },
+
+  updateNews: async (req, res) => {
+    // todo: update
+    // const date = new Date().getTime();
+    // const newsItem = {
+    //   ...req.body,
+    //   id: utils.guid(),
+    //   authorId: USER_ID,
+    //   dateCreated: date,
+    //   dateUpdated: date
+    // };
+    //
+    // await newsRef.push(newsItem);
+    //
+    // return res.status(200).send(newsItem);
+    return res.status(200).send();
   },
 
   deleteNews: async (req, res) => {
