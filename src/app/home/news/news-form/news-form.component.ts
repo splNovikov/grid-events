@@ -23,7 +23,7 @@ export class NewsFormComponent implements OnChanges {
   public newsItem: INews;
 
   @Output()
-  onFormSubmit: EventEmitter<INews> = new EventEmitter<INews>();
+  formSubmit: EventEmitter<INews> = new EventEmitter<INews>();
 
   public newsForm = this._fb.group({
     title: ['', Validators.required],
@@ -45,7 +45,7 @@ export class NewsFormComponent implements OnChanges {
   }
 
   public onSubmit = (): void => {
-    this.onFormSubmit.emit(this.composeNewsItem(this.newsForm.value));
+    this.formSubmit.emit(this.composeNewsItem(this.newsForm.value));
   }
 
   private composeNewsItem = (formValue): INews => ({

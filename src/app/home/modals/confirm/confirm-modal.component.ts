@@ -15,11 +15,11 @@ export class ConfirmModalComponent {
 
   public onNoClick = (): void => {
     this._dialogRef.close();
-  };
+  }
 
   public onConfirm = (): void => {
     this.data.onConfirm();
     this._dialogRef.close();
-  };
+  }
 
 }
