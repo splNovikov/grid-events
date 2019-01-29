@@ -13,7 +13,7 @@ export class NewsEditComponent implements OnInit, OnDestroy {
 
   public newsItem: INews;
 
-  private sub: any;
+  private aRouteSubscription: any;
 
   constructor(private _activatedRoute: ActivatedRoute,
               private _newsService: NewsService,
@@ -21,14 +21,14 @@ export class NewsEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this._activatedRoute.params.subscribe(params => {
+    this.aRouteSubscription = this._activatedRoute.params.subscribe(params => {
       this._newsService.loadNewsItem(params['id'])
         .subscribe(this.setNewsItem);
     });
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.aRouteSubscription.unsubscribe();
   }
 
   public handleEditNewsSubmit = (newsItem: INews) => {

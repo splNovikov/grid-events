@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { INews } from '../../../interfaces';
+import { NewsService } from '../../../services';
 
 @Component({
   selector: 'ge-news-details',
@@ -8,22 +10,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NewsDetailsComponent implements OnInit, OnDestroy {
 
-  public id: number;
-  private sub: any;
+  public newsItem: INews;
 
-  constructor(private _activatedRoute: ActivatedRoute) {
+  private aRouteSubscription: any;
+
+  constructor(private _activatedRoute: ActivatedRoute,
+              private _newsService: NewsService) {
   }
 
   ngOnInit() {
-    this.sub = this._activatedRoute.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
-
-      // todo: Dispatch action to load the details here.
+    this.aRouteSubscription = this._activatedRoute.params.subscribe(params => {
+      this._newsService.loadNewsItem(params['id'])
+        .subscribe(this.setNewsItem);
     });
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.aRouteSubscription.unsubscribe();
+  }
+
+  private setNewsItem = (newsItem: INews) => {
+    this.newsItem = newsItem;
   }
 
 }

@@ -50,7 +50,7 @@ export class NewsFormComponent implements OnChanges {
 
   private composeNewsItem = (formValue): INews => ({
     ...formValue,
-    // todo: images should be an array
-    images: [formValue.images]
+    // todo: fix this - images should be an array with possibility to choose multiple images
+    images: Array.isArray(formValue.images) ? formValue.images : [formValue.images]
   })
 }
