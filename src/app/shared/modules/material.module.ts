@@ -11,7 +11,8 @@ import {
   MatTooltipModule,
   MatFormFieldModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 const materialModules = [
@@ -26,7 +27,8 @@ const materialModules = [
   MatTooltipModule,
   MatFormFieldModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

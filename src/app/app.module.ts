@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -10,7 +11,14 @@ import { appRoutes } from './app.routes';
 import { NewsModule } from './home/news/news.module';
 import { EventsModule } from './home/events/events.module';
 import { ModalsModule } from './home/modals/modals.module';
-import { EventsService, NewsService, UserService, CanCreateNewsGuard, CanUpdateNewsGuard } from './services';
+import {
+  EventsService,
+  NewsService,
+  UserService,
+  CanCreateNewsGuard,
+  CanUpdateNewsGuard,
+  HttpErrorInterceptor
+} from './services';
 
 
 @NgModule({
@@ -28,7 +36,14 @@ import { EventsService, NewsService, UserService, CanCreateNewsGuard, CanUpdateN
     NewsModule,
     EventsModule
   ],
-  providers: [NewsService, EventsService, UserService, CanCreateNewsGuard, CanUpdateNewsGuard],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
+    NewsService,
+    EventsService,
+    UserService,
+    // Guards:
+    CanCreateNewsGuard,
+    CanUpdateNewsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
